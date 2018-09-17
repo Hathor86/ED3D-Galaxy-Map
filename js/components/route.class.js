@@ -65,6 +65,7 @@ var Route = {
     var nameR = '';
     var first = null;
     var last = null;
+    var currentWayPoint = null;
     var color = Ed3d.material.orange;
     var colorLine = Ed3d.material.line;
 
@@ -91,6 +92,8 @@ var Route = {
 
         if(first==null) first = [c[0], c[1], c[2]];
         last = [c[0], c[1], c[2]];
+        
+        if(val.currentWayPoint != undefined && val.currentWayPoint) currentWayPoint = [c[0], c[1], c[2]];
 
         //-- Add line point
         geometryL.vertices.push(
@@ -110,8 +113,9 @@ var Route = {
     routes[idRoute] = new THREE.Line(geometryL, colorLine);
 
     //-- Add object for start & end
-    if(first!==null) this.addCircle('route-'+idRoute+'-first', first, color, 7);
+    if(first!==null) this.addCircle('route-'+idRoute+'-first', first, color, 3);
     if(!hideLast && last!==null)  this.addCircle('route-'+idRoute+'-last', last, color, 3);
+    if(currentWayPoint!=null)  this.addCircle("route-"+idRoute+"-waypoint",currentWayPoint, Ed3d.material.lightblue, 3);
 
     routes[idRoute].name = 'route-'+idRoute;
 
