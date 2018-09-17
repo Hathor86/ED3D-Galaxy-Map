@@ -232,7 +232,6 @@ var Ed3d = {
     System.remove();
     HUD.removeFilters();
     Route.remove();
-    Galaxy.remove();
 
     Loader.stop();
 
